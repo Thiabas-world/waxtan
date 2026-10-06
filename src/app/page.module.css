@@ -1,0 +1,168 @@
+/* Mise en page de la landing. Les composants génériques (.btn, .card, .tag)
+   viennent de broadsheet.css, ce fichier ne gère que la disposition. */
+
+.page { color: var(--color-text); overflow-x: hidden; }
+
+.container {
+  max-width: 1120px; width: 100%; margin: 0 auto;
+  padding-inline: 20px;
+}
+
+/* — en-tête — */
+.header { composes: container; padding-block: 16px; display: flex; align-items: center; gap: 16px; }
+.brand { display: flex; flex-direction: column; gap: 5px; text-decoration: none; margin-right: auto; }
+.wordmark {
+  font-family: var(--font-heading); font-weight: 600; font-size: 26px; line-height: 1;
+  letter-spacing: -0.03em; color: var(--color-accent-900);
+}
+.wordmarkDot { color: var(--color-accent-2); }
+.inkBar { display: flex; gap: 2px; }
+.inkBar span { width: 12px; height: 3px; }
+.inkBarLarge { display: flex; gap: 4px; }
+.inkBarLarge span { width: 32px; height: 5px; }
+.inkC { background: var(--color-accent); }
+.inkM { background: var(--color-accent-2); }
+.inkY { background: var(--color-process-yellow); }
+.headerButton { min-height: 44px; font-size: 15px; padding-inline: 18px; white-space: nowrap; flex: none; }
+
+.main { display: flex; flex-direction: column; }
+
+/* — sections — */
+.section { composes: container; padding-top: 56px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 36px; }
+.eyebrow { margin: 0; color: var(--color-neutral-700); }
+.sectionTitle {
+  margin: 0; font-size: clamp(30px, 5vw, 48px); line-height: 1.1;
+  letter-spacing: -0.025em; max-width: 760px; text-wrap: balance;
+}
+.text { margin: 0; font-size: 16px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty; }
+.muted { font-size: 13px; color: var(--color-neutral-700); }
+.accentItalic { font-style: italic; font-weight: 700; color: var(--color-accent-700); }
+
+/* — hero — */
+.hero {
+  composes: container; padding-top: 40px; padding-bottom: 72px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr));
+  gap: 48px; align-items: center;
+}
+.heroText { display: flex; flex-direction: column; gap: 22px; }
+.greeting { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); }
+.heroTitle {
+  margin: 0; font-size: clamp(44px, 9vw, 80px); line-height: 0.98;
+  letter-spacing: -0.035em; color: var(--color-accent-900); text-wrap: balance;
+}
+.heroLead {
+  margin: 0; font-size: clamp(17px, 2.2vw, 20px); line-height: 1.55; max-width: 500px;
+  color: var(--color-neutral-800); text-wrap: pretty;
+}
+.cta { display: flex; flex-direction: column; gap: 10px; max-width: 375px; }
+.ctaButton { min-height: 52px; font-size: 17px; width: 100%; }
+
+.heroVisual { position: relative; padding: 28px 0 28px 28px; }
+.heroBackdrop {
+  position: absolute; inset: 0; border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 25% 70%, var(--color-accent-300), transparent 62%),
+    radial-gradient(circle at 80% 25%, var(--color-accent-2-200), transparent 55%),
+    var(--color-bg);
+}
+.recorder { position: relative; padding: 24px; gap: 16px; max-width: 400px; background: var(--color-neutral-100); }
+.rowBetween { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.recBadge {
+  display: flex; align-items: center; gap: 7px; padding: 5px 12px; border-radius: 999px;
+  background: var(--color-accent-2-100); color: var(--color-accent-2-800); font-size: 13px; font-weight: 600;
+}
+.recDot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent-2); }
+.progress { display: flex; gap: 4px; }
+.progress span { flex: 1; height: 4px; background: var(--color-neutral-300); }
+.progress .done { background: var(--color-accent); }
+.question { margin: 0; font-size: 21px; line-height: 1.35; font-style: italic; }
+.speaking { display: flex; align-items: center; gap: 12px; }
+.waveform { display: flex; align-items: center; gap: 3px; height: 28px; }
+.waveform span { width: 3px; background: var(--color-accent-2); }
+
+/* — problème — */
+.problems {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 32px 40px; max-width: 980px;
+}
+.problem { display: flex; flex-direction: column; gap: 8px; }
+.problem h4 { margin: 0; }
+.icon { color: var(--color-accent); flex: none; }
+
+/* — modes — */
+.modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 20px; }
+.mode { padding: 28px; gap: 16px; transition: box-shadow 0.2s; }
+.mode:hover { box-shadow: var(--shadow-md); }
+.modeKicker { font-size: 12px; color: var(--color-accent-700); }
+.modeTitle { font-size: 28px; letter-spacing: -0.015em; }
+.modeBody { font-size: 16px; line-height: 1.6; opacity: 1; color: var(--color-neutral-800); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.modeLink {
+  display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 600;
+  color: var(--color-accent-700); padding-top: 4px;
+}
+
+/* — étapes — */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 40px; }
+.step { display: flex; flex-direction: column; gap: 14px; }
+.step h3 { margin: 0; }
+.stepNumber { font-family: var(--font-heading); font-weight: 600; font-size: 88px; }
+
+/* — rapport — */
+.reportSection {
+  composes: container; padding-top: 56px; padding-bottom: 72px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: 48px; align-items: start;
+}
+.reportIntro { display: flex; flex-direction: column; gap: 20px; max-width: 440px; }
+.criteria { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 16px; }
+.criteria li { display: flex; gap: 10px; align-items: center; }
+.report { padding: 24px; gap: 22px; background: var(--color-neutral-100); }
+.reportHeader { composes: rowBetween; flex-wrap: wrap; }
+.strength { display: flex; flex-direction: column; gap: 8px; }
+.strength :global(.tag) { align-self: flex-start; }
+.quote { margin: 0; font-size: 19px; line-height: 1.4; font-style: italic; }
+.metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+.metric { display: flex; flex-direction: column; gap: 8px; }
+.metricLabel { font-size: 11px; color: var(--color-accent-700); }
+.metricValue { display: flex; align-items: baseline; gap: 6px; }
+.metricNumber { font-weight: 600; font-size: 36px; line-height: 1; letter-spacing: -0.03em; color: var(--color-accent); }
+.gauge { position: relative; height: 5px; background: var(--color-neutral-300); border-radius: 3px; }
+.gaugeZone { position: absolute; left: 35%; width: 30%; top: 0; bottom: 0; background: var(--color-accent-300); border-radius: 3px; }
+.gaugeMarker { position: absolute; left: 52%; top: -4px; width: 3px; height: 13px; background: var(--color-accent-700); border-radius: 2px; }
+.segments { display: flex; gap: 3px; }
+.segments span { flex: 1; height: 5px; background: var(--color-neutral-300); }
+.segments .full { background: var(--color-accent); }
+.segments .partial { background: var(--color-accent-300); }
+.tip { display: flex; gap: 12px; align-items: flex-start; padding-top: 4px; }
+.tip p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--color-neutral-800); }
+.tip strong { font-weight: 600; color: var(--color-text); }
+
+/* — témoignages — */
+.testimonialsHead { display: flex; flex-direction: column; gap: 12px; }
+.disclaimer { margin: 0; font-size: 14px; color: var(--color-neutral-700); display: flex; align-items: center; gap: 8px; }
+.testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px; }
+.testimonial { padding: 24px; gap: 16px; margin: 0; }
+.testimonial :global(.tag) { align-self: flex-start; }
+.testimonial blockquote { margin: 0; font-size: 19px; line-height: 1.45; font-style: italic; flex: 1; }
+.testimonial figcaption { margin: 0; font-size: 14px; color: var(--color-neutral-700); }
+.testimonial figcaption strong { font-weight: 600; color: var(--color-text); }
+
+/* — appel final — */
+.closing { composes: container; padding-top: 72px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 24px; }
+.closingTitle {
+  margin: 0; font-size: clamp(36px, 7vw, 64px); line-height: 1.02; letter-spacing: -0.03em;
+  max-width: 780px; color: var(--color-accent-900); text-wrap: balance;
+}
+.closingLead { margin: 0; font-size: 18px; line-height: 1.55; max-width: 520px; color: var(--color-neutral-800); }
+
+/* — pied de page — */
+.footer { composes: container; padding-top: 40px; padding-bottom: 48px; display: flex; flex-direction: column; gap: 28px; }
+.footerTop { display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; }
+.footerBrand { display: flex; flex-direction: column; gap: 8px; margin-right: auto; }
+.footerBrand .wordmark { font-size: 24px; }
+.tagline { font-size: 15px; font-style: italic; color: var(--color-neutral-800); }
+.footerNav { display: grid; grid-template-columns: repeat(2, minmax(0, auto)); gap: 12px 40px; font-size: 15px; }
+.footerNav a { color: var(--color-text); text-decoration: none; }
+.footerNav a:hover { color: var(--color-accent-700); }
+.legal { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 13px; color: var(--color-neutral-700); }
