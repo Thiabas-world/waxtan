@@ -1,0 +1,24 @@
+# Fichiers à ne jamais envoyer à Docker pendant le build.
+# Plus le "contexte" envoyé est petit, plus le build est rapide.
+
+# Dépendances et résultats de build : reconstruits dans l'image
+node_modules
+.next
+out
+build
+
+# Secrets : ne doivent jamais se retrouver dans une image
+.env*
+
+# Git, éditeurs, CI, documentation : inutiles pour faire tourner l'app
+.git
+.github
+.vscode
+*.md
+Dockerfile
+.dockerignore
+
+# Divers
+npm-debug.log*
+*.tsbuildinfo
+next-env.d.ts
