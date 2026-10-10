@@ -21,15 +21,19 @@ Installation des dépendances après un clone :
 npm ci
 ```
 
-## Le raccourci : `scripts/ship.ps1`
+## Le raccourci : `scripts/ship.sh`
 
-Depuis `main` à jour, avec des modifications pas encore commitées :
+Dans Git Bash (sous Windows) ou n'importe quel terminal Linux ou macOS, depuis `main` à jour, avec des modifications pas encore commitées :
 
-```powershell
-./scripts/ship.ps1
+```bash
+./scripts/ship.sh
 ```
 
-Le script pose trois questions (type, nom de branche, message de commit), puis enchaîne les étapes 2 et 4 à 10 ci-dessous : branche, lint, build, commit, push, pull request, et fusion automatique dès que la CI est verte. Il s'arrête à la première erreur. Le parcours manuel reste décrit ci-dessous, pour comprendre ce que fait le script.
+Le script pose trois questions (type, nom de branche, message de commit), puis enchaîne les étapes 2 et 4 à 10 ci-dessous : branche, lint, build, commit, push, pull request, et fusion automatique dès que la CI est verte. Il s'arrête à la première erreur.
+
+Les commandes réseau (fetch, push, appels à GitHub) sont relancées jusqu'à 4 fois en cas de coupure. Si le script s'arrête malgré tout, relance-le depuis la branche de travail : il reprend là où il s'était arrêté sans refaire ce qui est déjà fait.
+
+Le parcours manuel reste décrit ci-dessous, pour comprendre ce que fait le script.
 
 ## Le parcours
 
