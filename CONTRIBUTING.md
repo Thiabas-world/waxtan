@@ -21,6 +21,16 @@ Installation des dépendances après un clone :
 npm ci
 ```
 
+## Le raccourci : `scripts/ship.ps1`
+
+Depuis `main` à jour, avec des modifications pas encore commitées :
+
+```powershell
+./scripts/ship.ps1
+```
+
+Le script pose trois questions (type, nom de branche, message de commit), puis enchaîne les étapes 2 et 4 à 10 ci-dessous : branche, lint, build, commit, push, pull request, et fusion automatique dès que la CI est verte. Il s'arrête à la première erreur. Le parcours manuel reste décrit ci-dessous, pour comprendre ce que fait le script.
+
 ## Le parcours
 
 ### 1. Partir d'un `main` à jour
