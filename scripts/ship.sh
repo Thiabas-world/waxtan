@@ -57,10 +57,22 @@ verifications_locales() {
   npm run build
 }
 
+# read -e active l'édition de ligne (readline) : flèches, effacement et
+# historique fonctionnent comme dans le terminal. Sans -e, chaque flèche
+# s'enregistrerait comme une séquence d'échappement (^[[D...) dans la réponse.
 demander_message() {
   local description=""
-  while [[ -z "$description" ]]; do
-    read -rp "Message du commit (sans le type) : " description
+  while true; do
+    read -erp "Message du commit (sans le type) : " description
+    if [[ -z "$description" ]]; then
+      continue
+    elif [[ "$description" =~ [[:cntrl:]] ]]; then
+      echo "Le message contient des caractères invisibles (touches spéciales ?). Recommence."
+    elif (( ${#description} > 72 )); then
+      echo "Trop long (${#description} caractères, 72 maximum). Fais plus court."
+    else
+      break
+    fi
   done
   MESSAGE="$1: $description"
 }
@@ -86,17 +98,17 @@ if [[ "$branche" == "main" ]]; then
   etape "Description de la modification"
   type=""
   until [[ " $TYPES " == *" $type "* && -n "$type" ]]; do
-    read -rp "Type ($TYPES) : " type
+    read -erp "Type ($TYPES) : " type
   done
   nom=""
   until [[ "$nom" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; do
-    read -rp "Nom court de la branche, en minuscules et tirets (ex: upload-cv) : " nom
+    read -erp "Nom court de la branche, en minuscules et tirets (ex: upload-cv) : " nom
   done
   demander_message "$type"
   branche="$type/$nom"
 
   printf '\nBranche : %s\nCommit  : %s\n' "$branche" "$MESSAGE"
-  read -rp "On livre ? (o/n) : " confirmation
+  read -erp "On livre ? (o/n) : " confirmation
   [[ "$confirmation" == "o" ]] || { echo "Annulé, rien n'a été modifié."; exit 0; }
 
   etape "Création de la branche $branche"
