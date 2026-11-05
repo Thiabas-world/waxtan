@@ -1,0 +1,24 @@
+# Terraform : ce qui ne doit JAMAIS aller dans Git.
+# Posé avant le premier "terraform init", pour que l'état ne puisse
+# jamais être commité par erreur (le dépôt est public).
+
+# Providers téléchargés (comme node_modules), recréés par "terraform init"
+.terraform/
+
+# L'état et ses sauvegardes : peut contenir des valeurs sensibles
+*.tfstate
+*.tfstate.*
+
+# Valeurs de variables : peuvent contenir des secrets
+*.tfvars
+*.tfvars.json
+
+# Plans enregistrés (terraform plan -out) : contiennent des valeurs
+*.tfplan
+
+# Journaux de plantage
+crash.log
+crash.*.log
+
+# À l'inverse, .terraform.lock.hcl DOIT être commité :
+# il fige les versions exactes des providers (comme package-lock.json).

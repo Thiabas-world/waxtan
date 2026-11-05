@@ -48,6 +48,10 @@ verifier_secrets() {
   if git status --porcelain | grep -Eq '(^|/)\.env'; then
     echec "Un fichier .env apparaît dans les modifications. Vérifie le .gitignore."
   fi
+  # L'état Terraform peut contenir des valeurs sensibles, et le dépôt est public.
+  if git status --porcelain --untracked-files=all | grep -Eq '\.tfstate|\.tfvars|(^|/)\.terraform/'; then
+    echec "Un fichier d'état ou de variables Terraform apparaît dans les modifications. Vérifie infra/.gitignore."
+  fi
 }
 
 verifications_locales() {
