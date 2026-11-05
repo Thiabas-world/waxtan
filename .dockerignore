@@ -10,9 +10,10 @@ build
 # Secrets : ne doivent jamais se retrouver dans une image
 .env*
 
-# Git, éditeurs, CI, documentation : inutiles pour faire tourner l'app
+# Git, éditeurs, CI, infrastructure, documentation : inutiles pour faire tourner l'app
 .git
 .github
+infra
 .vscode
 *.md
 Dockerfile
