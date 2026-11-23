@@ -14,3 +14,8 @@ output "security_group_web_id" {
   description = "Identifiant du Security Group web"
   value       = aws_security_group.web.id
 }
+
+output "ecr_url" {
+  description = "Adresse du dépôt ECR, où la CI enverra l'image"
+  value       = aws_ecr_repository.app.repository_url
+}
